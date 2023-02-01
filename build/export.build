@@ -1,0 +1,6 @@
+$out_root/
+{
+  include glob/
+}
+
+export $out_root/glob/$import.target
