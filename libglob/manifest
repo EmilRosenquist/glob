@@ -1,6 +1,7 @@
 : 1
-name: glob
+name: libglob
 version: 0.0.1
+project: glob
 summary: Unix-style pathname pattern expansion
 license: MIT
 description-file: README.md

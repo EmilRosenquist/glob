@@ -8,7 +8,7 @@ hxx{version}: in{version} $src_root/manifest
 
 # Build options.
 #
-cxx.poptions =+ "-I$out_root" "-I$src_root"
+cxx.poptions =+ "-I$out_root" "-I$src_root" "-I$src_base"
 
 {hbmia obja}{*}: cxx.poptions += -DGLOB_STATIC_BUILD
 {hbmis objs}{*}: cxx.poptions += -DGLOB_SHARED_BUILD
@@ -23,7 +23,7 @@ if ($cxx.target.system == 'mingw32')
 
 lib{glob}:
 {
-  cxx.export.poptions = "-I$out_root" "-I$src_root"
+  cxx.export.poptions = "-I$out_root" "-I$src_root" "-I$src_base"
   cxx.export.libs = $intf_libs
 }
 

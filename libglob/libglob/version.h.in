@@ -19,16 +19,16 @@
 // 3.0.0-b.2    0000299999999995020
 // 2.2.0-a.1.z  0000200001999990011
 //
-#define GLOB_VERSION       $glob.version.project_number$ULL
-#define GLOB_VERSION_STR   "$glob.version.project$"
-#define GLOB_VERSION_ID    "$glob.version.project_id$"
-#define GLOB_VERSION_FULL  "$glob.version$"
+#define LIBGLOB_VERSION       $libglob.version.project_number$ULL
+#define LIBGLOB_VERSION_STR   "$libglob.version.project$"
+#define LIBGLOB_VERSION_ID    "$libglob.version.project_id$"
+#define LIBGLOB_VERSION_FULL  "$libglob.version$"
 
-#define GLOB_VERSION_MAJOR $glob.version.major$
-#define GLOB_VERSION_MINOR $glob.version.minor$
-#define GLOB_VERSION_PATCH $glob.version.patch$
+#define LIBGLOB_VERSION_MAJOR $libglob.version.major$
+#define LIBGLOB_VERSION_MINOR $libglob.version.minor$
+#define LIBGLOB_VERSION_PATCH $libglob.version.patch$
 
-#define GLOB_PRE_RELEASE   $glob.version.pre_release$
+#define LIBGLOB_PRE_RELEASE   $libglob.version.pre_release$
 
-#define GLOB_SNAPSHOT_SN   $glob.version.snapshot_sn$ULL
-#define GLOB_SNAPSHOT_ID   "$glob.version.snapshot_id$"
+#define LIBGLOB_SNAPSHOT_SN   $libglob.version.snapshot_sn$ULL
+#define LIBGLOB_SNAPSHOT_ID   "$libglob.version.snapshot_id$"

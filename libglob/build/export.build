@@ -1,0 +1,6 @@
+$out_root/
+{
+  include libglob/
+}
+
+export $out_root/libglob/$import.target

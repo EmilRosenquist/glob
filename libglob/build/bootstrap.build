@@ -1,6 +1,7 @@
-project = glob
+project = libglob
 
 using version
 using config
+using test
 using install
 using dist
