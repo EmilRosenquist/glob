@@ -39,11 +39,13 @@ if $version.pre_release
 else
   lib{glob}: bin.lib.version = "-$version.major.$version.minor"
 
-# Install into the glob/ subdirectory of, say, /usr/include/
+# Install into the libglob/ subdirectory of, say, /usr/include/
 # recreating subdirectories.
 #
 {hxx ixx txx}{*}:
 {
-  install         = include/glob/
+  install         = include/libglob/
   install.subdirs = true
 }
+
+lib{glob}: cxx.pkgconfig.include = include/ include/libglob/
