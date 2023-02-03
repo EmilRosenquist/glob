@@ -14,7 +14,7 @@ lib{glob}: $pub/{$pub_hdrs}
 
 # Private headers and sources as well as dependencies.
 #
-lib{glob}: {hxx cxx}{**} $impl_libs $intf_libs
+lib{glob}: libul{glob}: {hxx cxx}{**} $impl_libs $intf_libs
 
 # Build options.
 #
@@ -31,6 +31,12 @@ cxx.poptions =+ "-I$out_pfx_src" "-I$src_pfx_src" \
 
 # Export options.
 #
+libs{glob}: def{glob}: include = ($cxx.target.system == 'win32-msvc')
+def{glob}: libul{glob}
+
+if ($cxx.target.system == 'mingw32')
+  cxx.loptions += -Wl,--export-all-symbols
+
 lib{glob}:
 {
   cxx.export.poptions = "-I$out_pfx_inc" "-I$src_pfx_inc"
