@@ -2,28 +2,38 @@ intf_libs = # Interface dependencies.
 impl_libs = # Implementation dependencies.
 #import xxxx_libs += libhello%lib{hello}
 
-lib{glob}: libul{glob}: {hxx ixx txx cxx}{** -version} hxx{version} $impl_libs $intf_libs
+# Public headers.
+#
+pub = [dir_path] ../include/glob/
 
-hxx{version}: in{version} $src_root/manifest
+include $pub
+
+pub_hdrs = $($pub/ pub_hdrs)
+
+lib{glob}: $pub/{$pub_hdrs}
+
+# Private headers and sources as well as dependencies.
+#
+lib{glob}: {hxx cxx}{**} $impl_libs $intf_libs
 
 # Build options.
 #
-cxx.poptions =+ "-I$out_root" "-I$src_root" "-I$src_base"
+out_pfx_inc = [dir_path] $out_root/include/
+src_pfx_inc = [dir_path] $src_root/include/
+out_pfx_src = [dir_path] $out_root/source/
+src_pfx_src = [dir_path] $src_root/source/
+
+cxx.poptions =+ "-I$out_pfx_src" "-I$src_pfx_src" \
+                "-I$out_pfx_inc" "-I$src_pfx_inc"
 
 {hbmia obja}{*}: cxx.poptions += -DGLOB_STATIC_BUILD
 {hbmis objs}{*}: cxx.poptions += -DGLOB_SHARED_BUILD
 
 # Export options.
 #
-libs{glob}: def{glob}: include = ($cxx.target.system == 'win32-msvc')
-def{glob}: libul{glob}
-
-if ($cxx.target.system == 'mingw32')
-  cxx.loptions += -Wl,--export-all-symbols
-
 lib{glob}:
 {
-  cxx.export.poptions = "-I$out_root" "-I$src_root" "-I$src_base"
+  cxx.export.poptions = "-I$out_pfx_inc" "-I$src_pfx_inc"
   cxx.export.libs = $intf_libs
 }
 
@@ -39,13 +49,6 @@ if $version.pre_release
 else
   lib{glob}: bin.lib.version = "-$version.major.$version.minor"
 
-# Install into the libglob/ subdirectory of, say, /usr/include/
-# recreating subdirectories.
+# Don't install private headers.
 #
-{hxx ixx txx}{*}:
-{
-  install         = include/libglob/
-  install.subdirs = true
-}
-
-lib{glob}: cxx.pkgconfig.include = include/ include/libglob/
+hxx{*}: install = false

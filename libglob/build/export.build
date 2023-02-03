@@ -1,6 +1,6 @@
 $out_root/
 {
-  include libglob/
+  include source/
 }
 
-export $out_root/libglob/$import.target
+export $out_root/source/$import.target

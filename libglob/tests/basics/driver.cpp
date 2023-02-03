@@ -1,4 +1,3 @@
-#include <libglob/version.h>
 #include <glob/glob.h>
 
 #undef NDEBUG
